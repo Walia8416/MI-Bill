@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {RFValue} from 'react-native-responsive-fontsize';
+import {Colors} from '../../../constants/colors';
 import {heighttodp, widthtodp} from '../../../constants/Dimenstions';
 
 const styles = StyleSheet.create({
@@ -7,7 +8,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#9EF8A5',
+    backgroundColor: '#f9530b',
   },
 
   desigma: {
@@ -15,12 +16,22 @@ const styles = StyleSheet.create({
     height: heighttodp(185),
     bottom: 10,
   },
-  admybrand: {width: widthtodp(206), height: heighttodp(100), bottom: 238},
+  logos: {
+    width: widthtodp(175),
+    alignSelf: 'center',
+    height: heighttodp(200),
+    marginBottom: 20,
+  },
   tree: {width: widthtodp(306), height: heighttodp(150), bottom: 168},
 
   r1: {width: widthtodp(206), height: heighttodp(100), left: 35, bottom: 60},
   r2: {width: widthtodp(206), height: heighttodp(100), right: 40, bottom: 45},
-  subsection: {top: 230, justifyContent: 'center', alignItems: 'center'},
+  subsection: {
+    alignSelf: 'center',
+    justifyContent: 'center',
+
+    marginBottom: 0,
+  },
 });
 
 export default styles;

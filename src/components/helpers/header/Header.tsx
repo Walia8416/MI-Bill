@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-
+import {Bold} from '../../../constants/Fonts';
 import {Container} from '../../../styled_components/layout';
 import ImageContainer from './ImageContainer';
 import Images from '../../../constants/icon';
@@ -21,42 +21,21 @@ const {width} = Dimensions.get('window');
 
 const Header = ({navigation, onPress, scroll, testID, title, creds}) => {
   return (
-    <Container style={[styles.container, {elevation: scroll ? 6 : 0}]}>
+    <Container style={[styles.container, {elevation: scroll ? 6 : 10}]}>
+      <ImageContainer
+        name={Images.menu}
+        style={{width: widthtodp(25), height: heighttodp(25)}}
+      />
       <View style={styles.flexing}>
-        <TouchableOpacity activeOpacity={0.6} onPress={onPress}>
-          <ImageContainer
-            testID={testID}
-            name={title ? Images.back : Images.menu}
-            style={{width: 26, height: 26, marginLeft: 0}}
-          />
-        </TouchableOpacity>
-
         {title ? (
           <Text
             style={{
-              marginLeft: 82,
-              fontSize: RFValue(18),
-              color: '#ffde59',
-              fontWeight: 'bold',
+              fontSize: RFValue(20),
+              color: Colors.FeatherWhite,
+              fontFamily: Bold,
             }}>
             {title}
           </Text>
-        ) : (
-          <ImageContainer
-            name={Images.logoLin1}
-            style={{width: widthtodp(280), height: heighttodp(30)}}
-          />
-        )}
-        {creds ? (
-          <TouchableOpacity
-            activeOpacity={0.6}
-            onPress={() => navigation.navigate('Credits')}>
-            <ImageContainer
-              testID={testID}
-              name={Images.cred}
-              style={{width: 26, height: 26, marginLeft: 0}}
-            />
-          </TouchableOpacity>
         ) : null}
       </View>
     </Container>
@@ -68,20 +47,19 @@ export default Header;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+
     paddingTop: 20,
-    backgroundColor: '#039172',
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    backgroundColor: Colors.x,
   },
   flexing: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-around',
+    justifyContent:'center',
+    flex:1,
   },
-  marketingcontainer: {
-    marginLeft: widthtodp(12),
-    alignItems: 'center',
-  },
+
   marketingbtn: {
     flexDirection: 'row',
     alignItems: 'center',

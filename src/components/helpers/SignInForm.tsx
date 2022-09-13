@@ -53,8 +53,8 @@ const SignInForm: React.FC = () => {
           required: true,
           type: 'password',
           minLength: {
-            value: 8,
-            message: 'Incorrect password. Please try again.',
+            value: 2,
+            message: '',
           },
         }}
       />

@@ -8,6 +8,7 @@ import {
   TextInputEndEditingEventData,
   View,
 } from 'react-native';
+import { Colors } from '../../../constants/colors';
 import {
   Control,
   Controller,
@@ -76,7 +77,7 @@ const InputFeild: React.FC<props> = ({
   const bordercolorSet = onError
     ? '#e23b3b'
     : onActive
-    ? '#2abe77'
+    ? Colors.x
     : bordercolor
     ? bordercolor
     : '#c4d7e7';

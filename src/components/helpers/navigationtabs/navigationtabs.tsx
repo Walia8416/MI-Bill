@@ -17,14 +17,12 @@ export const MytabBarone = ({
   return (
     <View
       style={{
-        height: heighttodp(52),
-        backgroundColor: '#039172',
+        height: heighttodp(60),
+        backgroundColor: '#fd4900',
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
-        elevation: 3,
-        borderTopRightRadius: 16,
-        borderTopLeftRadius: 16,
+        elevation: 16,
       }}>
       {state.routes.map((route, index) => {
         const isFocused = state.index === index;
@@ -49,30 +47,31 @@ export const MytabBarone = ({
                 {isFocused ? (
                   <BottomNavigation
                     active={isFocused}
-                    name={'Home'}
+                    name={'Create Order'}
                     index={0}
                   />
                 ) : (
                   <BottomNavigation
-                    name={'Home'}
+                    name={'Create Order'}
                     active={isFocused}
                     index={1}
                   />
                 )}
               </View>
             )}
+
             {index === 1 && (
               <View style={styles.normalicon}>
                 {isFocused ? (
                   <BottomNavigation
                     active={isFocused}
                     index={2}
-                    name={'Crops'}
+                    name={'Orders'}
                   />
                 ) : (
                   <BottomNavigation
                     active={isFocused}
-                    name={'Crops'}
+                    name={'Orders'}
                     index={3}
                   />
                 )}
@@ -85,47 +84,13 @@ export const MytabBarone = ({
                   <BottomNavigation
                     active={isFocused}
                     index={4}
-                    name={'Weather'}
+                    name={'Cart'}
                   />
                 ) : (
                   <BottomNavigation
                     active={isFocused}
+                    name={'Cart'}
                     index={5}
-                    name={'Weather'}
-                  />
-                )}
-              </View>
-            )}
-            {index === 3 && (
-              <View style={styles.normalicon}>
-                {isFocused ? (
-                  <BottomNavigation
-                    active={isFocused}
-                    index={6}
-                    name={'Store'}
-                  />
-                ) : (
-                  <BottomNavigation
-                    active={isFocused}
-                    name={'Store'}
-                    index={7}
-                  />
-                )}
-              </View>
-            )}
-            {index === 4 && (
-              <View style={styles.normalicon}>
-                {isFocused ? (
-                  <BottomNavigation
-                    active={isFocused}
-                    index={7}
-                    name={'Store'}
-                  />
-                ) : (
-                  <BottomNavigation
-                    active={isFocused}
-                    name={'Store'}
-                    index={8}
                   />
                 )}
               </View>

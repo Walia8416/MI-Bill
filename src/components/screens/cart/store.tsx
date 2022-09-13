@@ -20,7 +20,7 @@ const Store: React.FC<RouteStackParamList<'Store'>> = ({
   return (
     <SafeAreaView style={{backgroundColor: Colors.white, flex: 1}}>
       <View>
-        <Header testID={'menu'} navigation={navigation} scroll={shadow} />
+        <Header testID={'menu'} navigation={navigation} scroll={shadow} title={"Previous Orders"}/>
         <ScrollView contentContainerStyle={{height: Screen_Height * 4}}>
           
         </ScrollView>

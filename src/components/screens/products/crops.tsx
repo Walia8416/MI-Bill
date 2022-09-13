@@ -23,7 +23,7 @@ const Crops: React.FC<RouteStackParamList<'Crops'>> = ({
   return (
     <SafeAreaView style={{backgroundColor: Colors.white, flex: 1}}>
       <View>
-        <Header testID={'menu'} navigation={navigation} scroll={shadow} />
+        <Header testID={'menu'} navigation={navigation} scroll={shadow} title={"Cart"}/>
         
       </View>
     </SafeAreaView>

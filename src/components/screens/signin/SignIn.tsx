@@ -68,8 +68,8 @@ const SignIn: React.FC<RouteStackParamList<'SignIn'>> = ({
               message: 'Enter Password',
             },
             minLength: {
-              value: 8,
-              message: 'Incorrect password. Please try again.',
+              value: 2,
+              message: 'Enter',
             },
           }}
         />
@@ -81,7 +81,7 @@ const SignIn: React.FC<RouteStackParamList<'SignIn'>> = ({
           onPress={() => navigation.navigate('Home')}
           style={[
             styles.loginBtn,
-            {backgroundColor: isValid ? Colors.green : Colors.inputBorder},
+            {backgroundColor: isValid ? Colors.x : Colors.inputBorder},
           ]}>
           <Text style={styles.loginText}>Log In</Text>
         </TouchableOpacity>
@@ -96,9 +96,15 @@ const SignIn: React.FC<RouteStackParamList<'SignIn'>> = ({
         }}>
         <StyledText style={{textAlign: 'center'}}>
           Don't have an account?{' '}
-          <Text style={{color: Colors.link, fontWeight: 'bold'}}>
-            {'Sign Up'}
-          </Text>
+          <TouchableOpacity>
+            <Text
+              style={{
+                color: Colors.x,
+                fontWeight: 'bold',
+              }}>
+              {'Sign Up'}
+            </Text>
+          </TouchableOpacity>
         </StyledText>
       </View>
     </View>

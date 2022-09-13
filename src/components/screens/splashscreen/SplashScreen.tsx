@@ -6,7 +6,13 @@ import styles from './SplashScreens';
 import ImageContainer from '../../helpers/header/ImageContainer';
 import Images from '../../../constants/icon';
 import {RFValue} from 'react-native-responsive-fontsize';
-import {SemiBoldItalic} from '../../../constants/Fonts';
+import {
+  Bold,
+  ExtraBold,
+  RobMono,
+  SemiBoldItalic,
+} from '../../../constants/Fonts';
+import {Colors} from '../../../constants/colors';
 
 const SplashScreen: React.FC<RouteStackParamList<'SplashScreen'>> = ({
   navigation,
@@ -33,24 +39,8 @@ const SplashScreen: React.FC<RouteStackParamList<'SplashScreen'>> = ({
 
   return (
     <View style={styles.screen}>
-      <View style={{flexDirection: 'row'}}>
-        <ImageContainer name={Images.r2} style={styles.r2} />
-        <ImageContainer name={Images.r1} style={styles.r1} />
-      </View>
-      <ImageContainer name={Images.desigma} style={styles.desigma} />
-
       <View style={styles.subsection}>
-        <ImageContainer name={Images.logo} style={styles.admybrand} />
-        <Text
-          style={{
-            color: 'darkgreen',
-            bottom: 230,
-            fontSize: RFValue(15),
-            fontFamily: SemiBoldItalic,
-          }}>
-          ~𝘍𝘢𝘳𝘮𝘦𝘳𝘴 𝘮𝘢𝘬𝘦 𝘪𝘵 𝘨𝘳𝘢𝘪𝘯~
-        </Text>
-        <ImageContainer name={Images.tree} style={styles.tree} />
+        <ImageContainer name={Images.logo} style={styles.logos} />
       </View>
     </View>
   );

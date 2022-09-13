@@ -65,9 +65,9 @@ const krishiBottomNavigator = ({
         name={'home'}
         component={Home}
       />
-      <krishiBottom.Screen name={'Crops'} component={Crops} />
-      <krishiBottom.Screen name={'Weather'} component={Weather} />
+     
       <krishiBottom.Screen name={'Store'} component={Store} />
+      <krishiBottom.Screen name={'Crop'} component={Crops} />
     </krishiBottom.Navigator>
   );
 };

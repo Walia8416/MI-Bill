@@ -1,6 +1,6 @@
 export const Colors = {
   // colors used in signup form,
-  inputBorder: '#c4e7ca',
+  inputBorder: '#FEC3AB',
   placeHolder: '#839fc0',
   success: '#2abe77',
   danger: '#e23b3b',
@@ -19,6 +19,8 @@ export const Colors = {
   FeatherWhite: '#f7f9ff',
   lightyellow: '#fceaac',
   white: '#ffffff',
+  black:"#121212",
+  x:"#fd4900",
   yellow: '#fff1c0',
   orange: '#e08700',
   grey: '#839FC0',

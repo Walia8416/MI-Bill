@@ -8,18 +8,12 @@ import Images from '../../../../constants/icon';
 import ImageContainer from '../../header/ImageContainer';
 
 const images = [
+  Images.home1,
   Images.home,
-  Images.home,
-  Images.crop,
-  Images.crop,
-  Images.weather,
-  Images.weather,
+  Images.store1,
   Images.store,
-
-  Images.store,
-  Images.learngray,
-  Images.shorts,
-  Images.shortsgray,
+  Images.cart1,
+  Images.cart,
 ];
 
 const BottomNavigation = ({
@@ -59,7 +53,7 @@ const BottomNavigation = ({
             style={{
               fontFamily: active ? Medium : Regular,
               fontWeight: active ? '500' : '400',
-              color: active ? '#ffde59' : Colors.FeatherWhite,
+              color: active ? Colors.FeatherWhite : Colors.black,
               fontSize: RFValue(8),
             }}>
             {name}

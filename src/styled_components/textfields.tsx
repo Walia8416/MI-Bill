@@ -23,7 +23,7 @@ export const Input = styled.TextInput`
 `;
 
 export const Heading = styled.Text`
-  color: ${Colors.green};
+  color: ${"#fd4900"};
 
   margin-top: 15px;
   margin-bottom: 10px;

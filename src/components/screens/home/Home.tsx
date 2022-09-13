@@ -39,11 +39,9 @@ const Home: React.FC<RouteStackParamList<'Home'>> = ({
         navigation={navigation}
         scroll={shadow}
         creds={true}
+        title={'Create Orders'}
       />
-      <ScrollView>
-        
-        
-      </ScrollView>
+      <ScrollView></ScrollView>
     </SafeAreaView>
   );
 };
