@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: '#fff',
     width: widthtodp(Screen_Width - 45),
-    height: heighttodp(100),
+    height: heighttodp(120),
 
     elevation: 0,
     margin: 5,

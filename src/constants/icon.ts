@@ -13,6 +13,8 @@ const Images = {
   menu: require('./../../assets/images/menu.png'),
   back: require('./../../assets/images/back.png'),
   location: require('./../../assets/images/location.png'),
+  barcode: require('./../../assets/images/barcode.png'),
+  prods: require('./../../assets/images/prods.png'),
 };
 
 export default Images;

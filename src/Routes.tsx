@@ -22,10 +22,12 @@ import SplashScreen from './components/screens/splashscreen/SplashScreen';
 import Weather from './components/screens/weather/weather';
 import {MytabBarone} from './components/helpers/navigationtabs/navigationtabs';
 import Cart from './components/screens/cart/store';
-import Crops from './components/screens/products/crops';
+import Crops from './components/screens/products/products';
 import CropDetails from './components/screens/products/cropDetails/cropDetails';
 import Store from './components/screens/cart/store';
 import Credits from './components/screens/credits/credits';
+import Products from './components/screens/products/products';
+import ProdDetails from './components/screens/products/productDetails';
 
 const Stack = createNativeStackNavigator<RouteParamList>();
 const krishiBottom = createBottomTabNavigator<RouteParamList>();
@@ -41,7 +43,7 @@ const Routes: React.FC = () => {
       <Screen name={'Home'} component={krishiBottomNavigator} />
 
       <Screen name={'SignIn'} component={SignIn} />
-      <Screen name={'CropDetails'} component={CropDetails} />
+      <Screen name={'Products'} component={Products} />
       <Screen name={'Credits'} component={Credits} />
     </Navigator>
   );

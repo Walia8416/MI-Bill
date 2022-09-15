@@ -19,23 +19,35 @@ const SplashScreen: React.FC<RouteStackParamList<'SplashScreen'>> = ({
   route,
 }: RouteStackParamList<'SplashScreen'>) => {
   React.useEffect(() => {
-    const firstTimeOpen = async () => {
-      try {
-        const firstTime = await AsyncStorage.getItem('@introData');
-
-        navigation.navigate('SignIn');
-      } catch (err) {
-        throw err;
-      }
-    };
     setTimeout(() => {
-      firstTimeOpen();
-    }, 4000);
-  }, []);
+      importData();
+      getData();
+    }, 50);
+  });
 
-  React.useEffect(() => {
-    setTimeout(() => {}, 50);
-  }, []);
+  const importData = async () => {
+    try {
+      const keys = await AsyncStorage.getAllKeys();
+      const result = await AsyncStorage.multiGet(keys);
+      console.log(result);
+      return result;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const getData = async () => {
+    try {
+      const dataToken = await AsyncStorage.getItem('Tokens');
+      if (dataToken !== null) {
+        navigation.navigate('Home');
+      } else {
+        navigation.navigate('SignIn');
+      }
+    } catch (e) {
+      console.log('errors');
+    }
+  };
 
   return (
     <View style={styles.screen}>

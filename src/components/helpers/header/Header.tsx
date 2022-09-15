@@ -1,4 +1,5 @@
 import {
+  Alert,
   Dimensions,
   GestureResponderEvent,
   Image,
@@ -7,6 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Bold} from '../../../constants/Fonts';
 import {Container} from '../../../styled_components/layout';
 import ImageContainer from './ImageContainer';
@@ -20,12 +22,32 @@ import {Colors} from '../../../constants/colors';
 const {width} = Dimensions.get('window');
 
 const Header = ({navigation, onPress, scroll, testID, title, creds}) => {
+  const clearAllData = async () => {
+    const keys = await AsyncStorage.getAllKeys();
+    await AsyncStorage.multiRemove(keys);
+  };
+
   return (
     <Container style={[styles.container, {elevation: scroll ? 6 : 10}]}>
-      <ImageContainer
-        name={Images.menu}
-        style={{width: widthtodp(25), height: heighttodp(25)}}
-      />
+      <TouchableOpacity
+        onPress={
+          creds
+            ? () => [clearAllData(), navigation.navigate('SignIn')]
+            : () => navigation.goBack()
+        }>
+        {creds ? (
+          <ImageContainer
+            name={Images.menu}
+            style={{width: widthtodp(25), height: heighttodp(25)}}
+          />
+        ) : (
+          <ImageContainer
+            name={Images.back}
+            style={{width: widthtodp(25), height: heighttodp(25)}}
+          />
+        )}
+      </TouchableOpacity>
+
       <View style={styles.flexing}>
         {title ? (
           <Text

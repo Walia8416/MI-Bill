@@ -1,15 +1,17 @@
-import {Image, Text, TouchableOpacity, View} from 'react-native';
+import {Alert, Image, Text, TouchableOpacity, View} from 'react-native';
 import {heighttodp, widthtodp} from '../../../constants/Dimenstions';
 import {Colors} from '../../../constants/colors';
 import Images from '../../../constants/icon';
 import InputFeild from '../../helpers/inputfields/InputField';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useEffect} from 'react';
 import {RouteStackParamList} from '../../../Routes';
 import {StyledText} from '../../../styled_components/styledtexts';
 import {useForm} from 'react-hook-form';
 import SignUpHeading from '../../helpers/SignUpHeading';
 import styles from './SignInStyles';
+import {login, loginUser} from '../../../store/actions/login';
+import {useAppDispatch} from '../../../store/store';
 
 const SignIn: React.FC<RouteStackParamList<'SignIn'>> = ({
   navigation,
@@ -20,6 +22,35 @@ const SignIn: React.FC<RouteStackParamList<'SignIn'>> = ({
     formState: {errors, isValid},
   } = useForm({mode: 'onChange', shouldFocusError: true});
   const [check, setCheck] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
+  const dispatch = useAppDispatch();
+
+  const storeData = async (keyd, value) => {
+    try {
+      await AsyncStorage.setItem(keyd, value);
+    } catch (e) {
+      console.log('fail save');
+    }
+  };
+
+  const onSubmit = async (data: {Email: string; Password: string}) => {
+    login({
+      email: data.Email,
+      password: data.Password,
+    })
+      .then(result => {
+        if (result.status == 200) {
+          storeData('Tokens', result.data.token);
+          storeData('Users', result.data.operator._id);
+          navigation.navigate('Home');
+        } else {
+          Alert.alert('Invalid Email or Password!');
+        }
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  };
 
   return (
     <View style={styles.main}>
@@ -78,7 +109,7 @@ const SignIn: React.FC<RouteStackParamList<'SignIn'>> = ({
       <View style={styles.login}>
         <TouchableOpacity
           disabled={!isValid}
-          onPress={() => navigation.navigate('Home')}
+          onPress={handleSubmit(onSubmit)}
           style={[
             styles.loginBtn,
             {backgroundColor: isValid ? Colors.x : Colors.inputBorder},

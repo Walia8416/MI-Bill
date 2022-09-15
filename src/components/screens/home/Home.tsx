@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Colors} from '../../../constants/colors';
 import Header from '../../helpers/header/Header';
 import React, {useEffect, useState} from 'react';
@@ -24,45 +24,74 @@ import {RFValue} from 'react-native-responsive-fontsize';
 import {Bold, RobMono} from '../../../constants/Fonts';
 import {store, useAppDispatch, useAppSelector} from '../../../store/store';
 import {useDispatch} from 'react-redux';
+import Loading from './helper/Loading';
 
 const {height} = Dimensions.get('window');
 
 const Home: React.FC<RouteStackParamList<'Home'>> = ({
   navigation,
+  route,
 }: RouteStackParamList<'Home'>) => {
   const [shadow, setShadow] = React.useState(false);
   const {stores} = useAppSelector(state => state.stores);
   const [current, setCurrent] = useState([]);
   const dispatch = useDispatch();
+
+  const getData = async () => {
+    try {
+      const dataToken = await AsyncStorage.getItem('Tokens');
+      const opID = await AsyncStorage.getItem('Users');
+      if (dataToken !== null) {
+        console.log(dataToken);
+        console.log(opID);
+        dispatch(getStores(opID));
+      } else {
+        console.log('NO ACTIVE token found');
+      }
+    } catch (e) {
+      console.log('errors');
+    }
+  };
+
   useEffect(() => {
-    dispatch(getStores());
+    getData();
   }, []);
-  console.log(stores);
-  const loading = stores.length === 0;
+
   useEffect(() => {
     setCurrent(stores.stores);
   }, [stores]);
 
+  console.log(current);
+
+  if (current && current?.length > 0) {
+    return (
+      <SafeAreaView style={{backgroundColor: Colors.white, flex: 1}}>
+        <Header
+          testID={'menu'}
+          navigation={navigation}
+          scroll={shadow}
+          creds={true}
+          title={'Create Orders'}
+        />
+        <View style={styles.mainCon}>
+          <Text style={styles.headText}>Select MI Store</Text>
+
+          <ScrollView>
+            {current.map(item => (
+              <TouchableOpacity
+                onPress={() => navigation.navigate('Products', {sid: item})}>
+                <ProductCard item={item} />
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+        </View>
+      </SafeAreaView>
+    );
+  }
   return (
-    <SafeAreaView style={{backgroundColor: Colors.white, flex: 1}}>
-      <Header
-        testID={'menu'}
-        navigation={navigation}
-        scroll={shadow}
-        creds={true}
-        title={'Create Orders'}
-      />
-      <View style={styles.mainCon}>
-        <Text style={styles.headText}>Select MI Store</Text>
-        <ScrollView>
-          {current.map(item => (
-            <TouchableOpacity>
-              <ProductCard item={item} />
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
-      </View>
-    </SafeAreaView>
+    <View style={{flex: 1}}>
+      <Loading />
+    </View>
   );
 };
 
