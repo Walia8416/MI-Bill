@@ -15,7 +15,6 @@ import {
 // Screens
 import Home from './components/screens/home/Home';
 
-
 import React from 'react';
 
 import SignIn from './components/screens/signin/SignIn';
@@ -40,7 +39,7 @@ const Routes: React.FC = () => {
       initialRouteName={'SplashScreen'}>
       <Screen name={'SplashScreen'} component={SplashScreen} />
       <Screen name={'Home'} component={krishiBottomNavigator} />
-     
+
       <Screen name={'SignIn'} component={SignIn} />
       <Screen name={'CropDetails'} component={CropDetails} />
       <Screen name={'Credits'} component={Credits} />
@@ -65,9 +64,8 @@ const krishiBottomNavigator = ({
         name={'home'}
         component={Home}
       />
-     
+
       <krishiBottom.Screen name={'Store'} component={Store} />
-      <krishiBottom.Screen name={'Crop'} component={Crops} />
     </krishiBottom.Navigator>
   );
 };

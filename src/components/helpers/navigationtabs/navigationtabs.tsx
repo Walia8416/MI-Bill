@@ -18,7 +18,7 @@ export const MytabBarone = ({
     <View
       style={{
         height: heighttodp(60),
-        backgroundColor: '#fd4900',
+        backgroundColor: Colors.mi,
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
@@ -73,24 +73,6 @@ export const MytabBarone = ({
                     active={isFocused}
                     name={'Orders'}
                     index={3}
-                  />
-                )}
-              </View>
-            )}
-
-            {index === 2 && (
-              <View style={styles.normalicon}>
-                {isFocused ? (
-                  <BottomNavigation
-                    active={isFocused}
-                    index={4}
-                    name={'Cart'}
-                  />
-                ) : (
-                  <BottomNavigation
-                    active={isFocused}
-                    name={'Cart'}
-                    index={5}
                   />
                 )}
               </View>

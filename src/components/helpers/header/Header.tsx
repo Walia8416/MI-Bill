@@ -51,13 +51,13 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
-    backgroundColor: Colors.x,
+    backgroundColor: Colors.mi,
   },
   flexing: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent:'center',
-    flex:1,
+    justifyContent: 'center',
+    flex: 1,
   },
 
   marketingbtn: {

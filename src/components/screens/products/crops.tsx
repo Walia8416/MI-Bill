@@ -11,7 +11,7 @@ import CropCard from './cropsCard';
 
 import {useAppDispatch, useAppSelector} from '../../../store/store';
 import {useDispatch} from 'react-redux';
-import {getForecast} from '../../../store/actions/forecast';
+import {getForecast} from '../../../store/actions/stores';
 import {heighttodp} from '../../../constants/Dimenstions';
 import {Screen_Height} from '../../../constants/constants';
 
@@ -23,8 +23,12 @@ const Crops: React.FC<RouteStackParamList<'Crops'>> = ({
   return (
     <SafeAreaView style={{backgroundColor: Colors.white, flex: 1}}>
       <View>
-        <Header testID={'menu'} navigation={navigation} scroll={shadow} title={"Cart"}/>
-        
+        <Header
+          testID={'menu'}
+          navigation={navigation}
+          scroll={shadow}
+          title={'Cart'}
+        />
       </View>
     </SafeAreaView>
   );

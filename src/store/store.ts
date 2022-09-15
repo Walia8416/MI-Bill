@@ -1,10 +1,10 @@
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
 
-import {forecastSlice} from './reducers/forecast';
+import {storesSlice} from './reducers/stores';
 
 const rootReducer = combineReducers({
-  forecast: forecastSlice.reducer,
+  stores: storesSlice.reducer,
 });
 
 export const store = configureStore({

@@ -1,27 +1,60 @@
 import Images from '../../../../constants/icon';
 
-export const carouselData = [
+export const storeData = [
   {
-    id: 1,
-    image: Images.car1,
-  },
-
-  {
-    id: 2,
-    image: Images.car2,
-  },
-
-  {
-    id: 3,
-    image: Images.car3,
-  },
-
-  {
-    id: 4,
-    image: Images.car4,
+    _id: '632184c734a8bf3191b61013',
+    location: 'Delhi',
+    name: 'Xiaomi Delhi',
+    address: 'Laxmi Nagar, Delhi',
+    operatorId: '63216dfad29ffe002548048c',
   },
   {
-    id: 5,
-    image: Images.car5,
+    _id: '632184c734a8bf3191b61013',
+    location: 'Delhi',
+    name: 'Xiaomi Delhi',
+    address: 'Laxmi Nagar, Delhi',
+    operatorId: '63216dfad29ffe002548048c',
+  },
+  {
+    _id: '632184c734a8bf3191b61013',
+    location: 'Delhi',
+    name: 'Xiaomi Delhi',
+    address: 'Laxmi Nagar, Delhi',
+    operatorId: '63216dfad29ffe002548048c',
+  },
+  {
+    _id: '632184c734a8bf3191b61013',
+    location: 'Delhi',
+    name: 'Xiaomi Delhi',
+    address: 'Laxmi Nagar, Delhi',
+    operatorId: '63216dfad29ffe002548048c',
+  },
+  {
+    _id: '632184c734a8bf3191b61013',
+    location: 'Delhi',
+    name: 'Xiaomi Delhi',
+    address: 'Laxmi Nagar, Delhi',
+    operatorId: '63216dfad29ffe002548048c',
+  },
+  {
+    _id: '632184c734a8bf3191b61013',
+    location: 'Delhi',
+    name: 'Xiaomi Delhi',
+    address: 'Laxmi Nagar, Delhi',
+    operatorId: '63216dfad29ffe002548048c',
+  },
+  {
+    _id: '632184c734a8bf3191b61013',
+    location: 'Delhi',
+    name: 'Xiaomi Delhi',
+    address: 'Laxmi Nagar, Delhi',
+    operatorId: '63216dfad29ffe002548048c',
+  },
+  {
+    _id: '632184c734a8bf3191b61013',
+    location: 'Delhi',
+    name: 'Xiaomi Delhi',
+    address: 'Laxmi Nagar, Delhi',
+    operatorId: '63216dfad29ffe002548048c',
   },
 ];

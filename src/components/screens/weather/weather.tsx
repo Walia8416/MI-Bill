@@ -13,7 +13,7 @@ import {Styles} from '../../../styles/homescreen';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useAppDispatch, useAppSelector} from '../../../store/store';
 import {useDispatch} from 'react-redux';
-import {getForecast} from '../../../store/actions/forecast';
+import {getForecast} from '../../../store/actions/stores';
 import Images from '../../../constants/icon';
 import {Screen_Height, Screen_Width} from '../../../constants/constants';
 import {RFValue} from 'react-native-responsive-fontsize';
@@ -45,11 +45,7 @@ const Weather: React.FC<RouteStackParamList<'Weather'>> = ({
         <Loading />
       ) : (
         (console.log(current),
-        (
-          <SafeAreaView style={{flex: 1, height: 235}}>
-           
-          </SafeAreaView>
-        ))
+        (<SafeAreaView style={{flex: 1, height: 235}}></SafeAreaView>))
       )}
     </>
   );
