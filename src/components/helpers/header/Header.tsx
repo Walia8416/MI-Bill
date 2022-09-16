@@ -23,8 +23,12 @@ const {width} = Dimensions.get('window');
 
 const Header = ({navigation, onPress, scroll, testID, title, creds}) => {
   const clearAllData = async () => {
-    const keys = await AsyncStorage.getAllKeys();
-    await AsyncStorage.multiRemove(keys);
+    try {
+      await AsyncStorage.clear();
+      console.log('Done');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

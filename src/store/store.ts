@@ -2,9 +2,11 @@ import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
 
 import {storesSlice} from './reducers/stores';
+import {productSlice} from './reducers/products';
 
 const rootReducer = combineReducers({
   stores: storesSlice.reducer,
+  products: productSlice.reducer,
 });
 
 export const store = configureStore({

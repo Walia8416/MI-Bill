@@ -28,6 +28,7 @@ import Store from './components/screens/cart/store';
 import Credits from './components/screens/credits/credits';
 import Products from './components/screens/products/products';
 import ProdDetails from './components/screens/products/productDetails';
+import Payment from './components/screens/payment/payment';
 
 const Stack = createNativeStackNavigator<RouteParamList>();
 const krishiBottom = createBottomTabNavigator<RouteParamList>();
@@ -41,7 +42,7 @@ const Routes: React.FC = () => {
       initialRouteName={'SplashScreen'}>
       <Screen name={'SplashScreen'} component={SplashScreen} />
       <Screen name={'Home'} component={krishiBottomNavigator} />
-
+      <Screen name={'Payment'} component={Payment} />
       <Screen name={'SignIn'} component={SignIn} />
       <Screen name={'Products'} component={Products} />
       <Screen name={'Credits'} component={Credits} />

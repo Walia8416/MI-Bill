@@ -41,10 +41,13 @@ const Home: React.FC<RouteStackParamList<'Home'>> = ({
     try {
       const dataToken = await AsyncStorage.getItem('Tokens');
       const opID = await AsyncStorage.getItem('Users');
+      const storeDets = await AsyncStorage.getItem('Stores');
+
       if (dataToken !== null) {
         console.log(dataToken);
         console.log(opID);
         dispatch(getStores(opID));
+        getStored();
       } else {
         console.log('NO ACTIVE token found');
       }
@@ -53,15 +56,33 @@ const Home: React.FC<RouteStackParamList<'Home'>> = ({
     }
   };
 
+  const getStored = async () => {
+    try {
+      const x = await AsyncStorage.getItem('Stores');
+      if (x) {
+        setCurrent(JSON.parse(x));
+      }
+
+      return x;
+    } catch (e) {
+      console.log('error in storing store details');
+    }
+  };
+
+  const setStores = async gg => {
+    try {
+      await AsyncStorage.setItem('Stores', JSON.stringify(gg));
+    } catch (e) {
+      console.log('error in storing store details');
+    }
+  };
   useEffect(() => {
     getData();
   }, []);
 
   useEffect(() => {
-    setCurrent(stores.stores);
+    setStores(stores.stores);
   }, [stores]);
-
-  console.log(current);
 
   if (current && current?.length > 0) {
     return (

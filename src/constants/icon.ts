@@ -15,6 +15,7 @@ const Images = {
   location: require('./../../assets/images/location.png'),
   barcode: require('./../../assets/images/barcode.png'),
   prods: require('./../../assets/images/prods.png'),
+  laptop: require('./../../assets/images/laptop.png'),
 };
 
 export default Images;

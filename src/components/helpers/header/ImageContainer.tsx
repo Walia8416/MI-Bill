@@ -13,11 +13,17 @@ interface Props {
   onPress?: ((event: GestureResponderEvent) => void) | undefined;
   testID?: string;
 }
-const ImageContainer = ({name, style, resizeMode}: Props) => {
+const ImageContainer = ({name, style, resizeMode, uri}: Props) => {
   return (
     <Image
       style={[style]}
-      source={name}
+      source={
+        uri
+          ? {
+              uri: uri,
+            }
+          : name
+      }
       resizeMode={resizeMode ? resizeMode : 'contain'}
     />
   );
