@@ -37,11 +37,22 @@ const Products: React.FC<RouteStackParamList<'Products'>> = ({
   const [scans, setScan] = React.useState(false);
   const [cat, setCat] = React.useState('Laptop');
   const [current, setCurrent] = useState([]);
+  const [cart, setCart] = useState([]);
   const {products} = useAppSelector(state => state.products);
   const dispatch = useDispatch();
   const {sid} = route.params;
   var data = [['Laptop', 'Phones', 'Audio']];
   console.log(sid._id);
+
+  const addCart = async ss => {
+    try {
+      console.log(ss);
+      await AsyncStorage.setItem('Cart', JSON.stringify(ss));
+    } catch (e) {
+      console.log('fail save');
+    }
+  };
+
 
   const getData = async () => {
     try {
@@ -149,18 +160,18 @@ const Products: React.FC<RouteStackParamList<'Products'>> = ({
               }}>
               {current.map(item =>
                 cat == item.category ? (
-                  <TouchableOpacity>
-                    <CropCard item={item} />
-                  </TouchableOpacity>
+                  
+                    <CropCard item={item} onPress={cart.push(item)}/>
+                 
                 ) : null,
               )}
             </View>
           </ScrollView>
         </DropdownMenu>
-        <TouchableOpacity onPress={() => navigation.navigate("Payment")}>
+        <TouchableOpacity onPress={() => [addCart(cart),navigation.navigate("Payment"),console.log(cart)]}>
           <View style={styles.button}>
             <Text style={{fontSize: RFValue(20), fontFamily: Bold}}>
-              Pay Now ->
+              Payment ->
             </Text>
           </View>
         </TouchableOpacity>
@@ -212,4 +223,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  
 });

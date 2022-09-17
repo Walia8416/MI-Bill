@@ -2,6 +2,7 @@ import assets from '../../assets';
 
 const Images = {
   home: require('./../../assets/images/home.png'),
+  cross: require('./../../assets/images/cross.png'),
   home1: require('./../../assets/images/home1.png'),
   crop: require('./../../assets/images/crop.png'),
   store: require('./../../assets/images/store.png'),

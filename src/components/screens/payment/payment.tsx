@@ -17,6 +17,7 @@ import {Bold} from '../../../constants/Fonts';
 
 import {StripeProvider} from '@stripe/stripe-react-native';
 import PaymentFun from './paymenFun';
+import {Screen_Height} from '../../../constants/constants';
 const Payment: React.FC<RouteStackParamList<'Payment'>> = ({
   navigation,
 }: RouteStackParamList<'Payment'>) => {
@@ -28,11 +29,11 @@ const Payment: React.FC<RouteStackParamList<'Payment'>> = ({
         creds={false}
         title={'Payment'}
       />
-      <View style={styles.mainCon}>
+      <ScrollView contentContainerStyle={styles.mainCon}>
         <StripeProvider publishableKey="pk_test_51LhuWsSDPfYNQPJ9IkCin2xeuE9Bsl2363xuhu2IfbKEMvZ3fAan5Eavgo7UTdhWs4rNUfRGM6Sfsx4nBgtxuexK00dfnlF8uW">
-          <PaymentFun />
+          <PaymentFun navigation={navigation} />
         </StripeProvider>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -54,7 +55,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 20,
   },
-  mainCon: {backgroundColor: Colors.white, flex: 1},
+  mainCon: {backgroundColor: Colors.white, flex: 1, height: Screen_Height * 2},
   innercon: {
     justifyContent: 'flex-start',
     alignItems: 'center',
