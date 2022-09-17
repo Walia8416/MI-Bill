@@ -8,7 +8,8 @@
     "start": "react-native start",
     "test": "jest",
     "prettier-format": "prettier --config .prettierrc 'src/**/*.tsx' --write",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "windows": "react-native run-windows"
   },
   "dependencies": {
     "@expo/vector-icons": "^12.0.5",
@@ -47,6 +48,7 @@
     "react-native-dropdown-menu": "^2.0.0",
     "react-native-email-link": "^1.11.3",
     "react-native-gesture-handler": "^1.10.3",
+    "react-native-html-to-pdf": "^0.12.0",
     "react-native-image-picker": "^4.0.6",
     "react-native-keychain": "^8.0.0",
     "react-native-maps": "0.28.0",
@@ -65,8 +67,11 @@
     "react-native-swiper": "^1.6.0",
     "react-native-table-component": "^1.2.1",
     "react-native-textinput-effects": "^0.6.3",
+    "react-native-uuid": "^2.0.1",
     "react-native-vector-icons": "^9.1.0",
     "react-native-webview": "^11.13.0",
+    "react-native-windows": "0.64.31",
+    "react-native-windows-init": "^1.1.107",
     "react-navigation-hooks": "^1.1.0",
     "react-redux": "^7.2.4",
     "styled-components": "^5.3.0"

@@ -94,6 +94,7 @@ const Products: React.FC<RouteStackParamList<'Products'>> = ({
         return obj.SSN == e.data;
       });
       if (found) {
+        cart.push(found);
         Alert.alert('Match Found ' + found.name);
       } else {
         Alert.alert('NO PRODUCT FOUND ');
@@ -168,7 +169,7 @@ const Products: React.FC<RouteStackParamList<'Products'>> = ({
             </View>
           </ScrollView>
         </DropdownMenu>
-        <TouchableOpacity onPress={() => [addCart(cart),navigation.navigate("Payment"),console.log(cart)]}>
+        <TouchableOpacity onPress={() => [addCart(cart),navigation.navigate("Payment",{sid:sid}),console.log(cart)]}>
           <View style={styles.button}>
             <Text style={{fontSize: RFValue(20), fontFamily: Bold}}>
               Payment ->

@@ -20,7 +20,9 @@ import PaymentFun from './paymenFun';
 import {Screen_Height} from '../../../constants/constants';
 const Payment: React.FC<RouteStackParamList<'Payment'>> = ({
   navigation,
+  route,
 }: RouteStackParamList<'Payment'>) => {
+  const {sid} = route.params;
   return (
     <SafeAreaView style={styles.mainCon}>
       <Header
@@ -31,7 +33,7 @@ const Payment: React.FC<RouteStackParamList<'Payment'>> = ({
       />
       <ScrollView contentContainerStyle={styles.mainCon}>
         <StripeProvider publishableKey="pk_test_51LhuWsSDPfYNQPJ9IkCin2xeuE9Bsl2363xuhu2IfbKEMvZ3fAan5Eavgo7UTdhWs4rNUfRGM6Sfsx4nBgtxuexK00dfnlF8uW">
-          <PaymentFun navigation={navigation} />
+          <PaymentFun navigation={navigation} sid={sid} />
         </StripeProvider>
       </ScrollView>
     </SafeAreaView>
