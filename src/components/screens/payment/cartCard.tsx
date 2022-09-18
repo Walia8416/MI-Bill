@@ -12,7 +12,7 @@ import ImageContainer from '../../helpers/header/ImageContainer';
 import {heighttodp, widthtodp} from '../../../constants/Dimenstions';
 import {RFValue} from 'react-native-responsive-fontsize';
 import BottomUpModal from '../../helpers/bottomupmodal/bottomupmodal';
-import ProductCard from '../home/helper/productCard';
+
 import {Screen_Height, Screen_Width} from '../../../constants/constants';
 import {Bold} from '../../../constants/Fonts';
 import Images from '../../../constants/icon';

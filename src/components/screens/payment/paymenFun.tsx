@@ -315,7 +315,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
   },
   button:{
-    width:widthtodp(Screen_Width-50),
+    width:widthtodp(Screen_Width - 50),
     height:heighttodp(50),
     padding:20,
     backgroundColor:"#ffd86f",

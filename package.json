@@ -19,6 +19,7 @@
     "@qdivision/react-native-pdf-view": "^0.4.1",
     "@react-native-async-storage/async-storage": "^1.15.17",
     "@react-native-community/masked-view": "^0.1.11",
+    "@react-native-community/netinfo": "^9.3.1",
     "@react-native-firebase/app": "^12.9.0",
     "@react-native-firebase/auth": "^12.9.0",
     "@react-native-google-signin/google-signin": "^7.0.4",

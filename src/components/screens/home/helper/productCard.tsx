@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     flexDirection: 'row',
     backgroundColor: '#fff',
-    width: widthtodp(Screen_Width - 45),
+    width: widthtodp(Screen_Width - 50),
     height: heighttodp(120),
 
     elevation: 0,
