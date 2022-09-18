@@ -163,9 +163,9 @@ android {
     signingConfigs {
         release {
             if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE')) {
-                storeFile file("Error404.keystore")
+                storeFile file("mibill.keystore")
                 storePassword "123456"
-                keyAlias 'Error404'
+                keyAlias 'mibill'
                 keyPassword '123456'
             }
         }
