@@ -1640,6 +1640,13 @@
   resolved "https://registry.yarnpkg.com/@opentelemetry/semantic-conventions/-/semantic-conventions-1.7.0.tgz#af80a1ef7cf110ea3a68242acd95648991bcd763"
   integrity sha512-FGBx/Qd09lMaqQcogCHyYrFEpTx4cAjeS+48lMIR12z7LdH+zofGDVQSubN59nL6IpubfKqTeIDu9rNO28iHVA==
 
+"@qdivision/react-native-pdf-view@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@qdivision/react-native-pdf-view/-/react-native-pdf-view-0.4.1.tgz#20ea046c464c8278937cf103fed116d15aca91b2"
+  integrity sha512-nCb0ORXHFlaT8cn/9dCmvi2WNJrnkzR+rVhm4jwElFp8oUsrw/T2iO9efeeIv3Yh5AS5KrcuCclFzp6N09KOZg==
+  dependencies:
+    prop-types "^15.6.0"
+
 "@react-native-async-storage/async-storage@^1.15.17":
   version "1.15.17"
   resolved "https://registry.yarnpkg.com/@react-native-async-storage/async-storage/-/async-storage-1.15.17.tgz#0dae263a52e476ffce871086f1fef5b8e44708eb"
@@ -3196,6 +3203,11 @@ balanced-match@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"
   integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
+
+base-64@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/base-64/-/base-64-0.1.0.tgz#780a99c84e7d600260361511c4877613bf24f6bb"
+  integrity sha512-Y5gU45svrR5tI2Vt/X9GPd3L0HNIKzGu202EjxrXMpuc2V2CiKgemAbUUsqYmZJvPtCXoUKjNZwBJzsNScUbXA==
 
 base64-js@^1.1.2, base64-js@^1.2.3, base64-js@^1.5.1:
   version "1.5.1"
@@ -9018,6 +9030,19 @@ react-native-email-link@^1.11.3:
   resolved "https://registry.npmjs.org/react-native-email-link/-/react-native-email-link-1.11.3.tgz"
   integrity sha512-y60NO5asmF6bnuI4eFBjo7kwiPngnZG4DXixhrfa0pJaRRJdarPXG05qK8NVS3szG0fw7cRv4m9ZEfHykqycaQ==
 
+react-native-file-viewer@^2.1.5:
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/react-native-file-viewer/-/react-native-file-viewer-2.1.5.tgz#cd4544f573108e79002b5c7e1ebfce4371885250"
+  integrity sha512-MGC6sx9jsqHdefhVQ6o0akdsPGpkXgiIbpygb2Sg4g4bh7v6K1cardLV1NwGB9A6u1yICOSDT/MOC//9Ez6EUg==
+
+react-native-fs@^2.20.0:
+  version "2.20.0"
+  resolved "https://registry.yarnpkg.com/react-native-fs/-/react-native-fs-2.20.0.tgz#05a9362b473bfc0910772c0acbb73a78dbc810f6"
+  integrity sha512-VkTBzs7fIDUiy/XajOSNk0XazFE9l+QlMAce7lGuebZcag5CnjszB+u4BdqzwaQOdcYb5wsJIsqq4kxInIRpJQ==
+  dependencies:
+    base-64 "^0.1.0"
+    utf8 "^3.0.0"
+
 react-native-gesture-handler@^1.10.3:
   version "1.10.3"
   resolved "https://registry.npmjs.org/react-native-gesture-handler/-/react-native-gesture-handler-1.10.3.tgz"
@@ -9055,6 +9080,11 @@ react-native-maps@0.28.0:
   integrity sha512-F+k5ZT9hhl+iXR1H+5ZcoHOEB5lPu9gCIwtA4lI/LoI9nfa9xFvr1vMiLIv44jzeGNzbE3+/R81IpcNDMJ5uDg==
   dependencies:
     "@types/geojson" "^7946.0.7"
+
+react-native-open-pdf@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-open-pdf/-/react-native-open-pdf-0.0.2.tgz#cc32d5d040d4130b036b38a068a8ce93921d99f1"
+  integrity sha512-IUJl1VM4Uc/Uxz+Gvr8Rokdpgisk7t2xLmNuqIF1QzAFso7mttkK0ZSVzXNx/mlcvu8kSmcf7n1qvKMGGtFawQ==
 
 react-native-popover-view@^4.0.1:
   version "4.0.1"
@@ -9199,6 +9229,11 @@ react-native-vector-icons@^9.1.0:
   dependencies:
     prop-types "^15.7.2"
     yargs "^16.1.1"
+
+react-native-view-pdf@^0.14.0:
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/react-native-view-pdf/-/react-native-view-pdf-0.14.0.tgz#e8fc6fa038a9c5911b037261b153b94641f0eac9"
+  integrity sha512-tW5zamLE0vYIgoEjASLOOCPmW3x1MfJM13GgKar5nPjltU6gWzgpviILmiqeuJB+H7aTCh/UrT81GoYlO0Oedg==
 
 react-native-webview@^11.13.0:
   version "11.13.0"
@@ -10889,6 +10924,11 @@ username@^5.1.0:
   dependencies:
     execa "^1.0.0"
     mem "^4.3.0"
+
+utf8@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/utf8/-/utf8-3.0.0.tgz#f052eed1364d696e769ef058b183df88c87f69d1"
+  integrity sha512-E8VjFIQ/TyQgp+TZfS6l8yp/xWppSAHzidGiRrqe4bK4XP9pTRyKFgGJpO3SN7zdX4DeomTrwaseCHovfpFcqQ==
 
 util-deprecate@^1.0.1, util-deprecate@^1.0.2, util-deprecate@~1.0.1:
   version "1.0.2"

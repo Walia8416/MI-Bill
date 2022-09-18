@@ -60,7 +60,7 @@ const SignIn: React.FC<RouteStackParamList<'SignIn'>> = ({
           marginTop: heighttodp(30),
           marginBottom: heighttodp(20),
         }}>
-        <SignUpHeading heading="Sign In" subheading="For Farmers" />
+        <SignUpHeading heading="Sign In" subheading="For " />
       </View>
       <View style={styles.inputText}>
         <InputFeild
@@ -124,20 +124,7 @@ const SignIn: React.FC<RouteStackParamList<'SignIn'>> = ({
           flexGrow: 1,
           justifyContent: 'flex-end',
           marginBottom: heighttodp(20),
-        }}>
-        <StyledText style={{textAlign: 'center'}}>
-          Don't have an account?{' '}
-          <TouchableOpacity>
-            <Text
-              style={{
-                color: Colors.x,
-                fontWeight: 'bold',
-              }}>
-              {'Sign Up'}
-            </Text>
-          </TouchableOpacity>
-        </StyledText>
-      </View>
+        }}></View>
     </View>
   );
 };

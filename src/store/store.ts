@@ -3,10 +3,11 @@ import {combineReducers, configureStore} from '@reduxjs/toolkit';
 
 import {storesSlice} from './reducers/stores';
 import {productSlice} from './reducers/products';
-
+import {orderSlice} from './reducers/getOrders';
 const rootReducer = combineReducers({
   stores: storesSlice.reducer,
   products: productSlice.reducer,
+  orders: orderSlice.reducer,
 });
 
 export const store = configureStore({

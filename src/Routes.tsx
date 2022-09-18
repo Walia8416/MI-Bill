@@ -29,6 +29,7 @@ import Credits from './components/screens/credits/credits';
 import Products from './components/screens/products/products';
 import ProdDetails from './components/screens/products/productDetails';
 import Payment from './components/screens/payment/payment';
+import PdfView from './components/screens/payment/pdfview';
 
 const Stack = createNativeStackNavigator<RouteParamList>();
 const krishiBottom = createBottomTabNavigator<RouteParamList>();
@@ -46,6 +47,7 @@ const Routes: React.FC = () => {
       <Screen name={'SignIn'} component={SignIn} />
       <Screen name={'Products'} component={Products} />
       <Screen name={'Credits'} component={Credits} />
+      <Screen name={'PdfView'} component={PdfView} />
     </Navigator>
   );
 };
