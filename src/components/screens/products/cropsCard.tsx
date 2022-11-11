@@ -47,8 +47,7 @@ const CropCard = ({item, onPress}) => {
           }}>
           ₹{item.price}
         </Text>
-        <Pressable
-          onPress={() => [onPress, , Alert.alert(item.name + ' Added')]}>
+        <Pressable onPress={onPress}>
           <View style={styles.button}>
             <Text style={styles.btext}>Add to Cart</Text>
           </View>

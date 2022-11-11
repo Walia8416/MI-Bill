@@ -9,11 +9,14 @@ import {Provider} from 'react-redux';
 import React from 'react';
 import {name as appName} from './app.json';
 // redux store
-import {store} from './src/store/store';
+import {PersistGate} from 'redux-persist/integration/react';
+import {store, persistor} from './src/store/store';
 
 export const Root = () => (
   <Provider store={store}>
-    <App />
+    <PersistGate persistor={persistor} loading={null}>
+      <App />
+    </PersistGate>
   </Provider>
 );
 

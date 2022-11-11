@@ -12,6 +12,8 @@ import SignUpHeading from '../../helpers/SignUpHeading';
 import styles from './SignInStyles';
 import {login, loginUser} from '../../../store/actions/login';
 import {useAppDispatch} from '../../../store/store';
+import {getStores} from '../../../store/actions/stores';
+import {getorders} from '../../../store/actions/getOrders';
 
 const SignIn: React.FC<RouteStackParamList<'SignIn'>> = ({
   navigation,
@@ -40,8 +42,10 @@ const SignIn: React.FC<RouteStackParamList<'SignIn'>> = ({
     })
       .then(result => {
         if (result.status == 200) {
+          dispatch(getStores(result.data.operator._id));
+          dispatch(getorders(result.data.operator._id));
+          AsyncStorage.setItem('Users', result.data.operator._id);
           storeData('Tokens', result.data.token);
-          storeData('Users', result.data.operator._id);
           navigation.navigate('Home');
         } else {
           Alert.alert('Invalid Email or Password!');

@@ -36,56 +36,26 @@ const Products: React.FC<RouteStackParamList<'Products'>> = ({
   const [shadow, setShadow] = React.useState(false);
   const [scans, setScan] = React.useState(false);
   const [cat, setCat] = React.useState('Laptop');
-  const [current, setCurrent] = useState([]);
   const [cart, setCart] = useState([]);
+  const [current,setCurrent] = useState([]);
   const {products} = useAppSelector(state => state.products);
   const dispatch = useDispatch();
   const {sid} = route.params;
   var data = [['Laptop', 'Phones', 'Audio']];
   console.log(sid._id);
+  const addCart = ss => {
+      cart.push(ss)
+      
+      setCart(cart)
+      console.log(cart)
+      Alert.alert(ss.name + " Added to Cart");
+      
+  }
+  
 
-  const addCart = async ss => {
-    try {
-      console.log(ss);
-      await AsyncStorage.setItem('Cart', JSON.stringify(ss));
-    } catch (e) {
-      console.log('fail save');
-    }
-  };
-
-
-  const getData = async () => {
-    try {
-      dispatch(getProducts(sid._id));
-      getProducted(sid._id);
-    } catch (e) {
-      console.log('errors');
-    }
-  };
-
-  const getProducted = async gg => {
-    try {
-      const x = await AsyncStorage.getItem(gg);
-      setCurrent(JSON.parse(x));
-      return x;
-    } catch (e) {
-      console.log('error in storing store details');
-    }
-  };
-  const setProducts = async gg => {
-    try {
-      await AsyncStorage.setItem(sid._id, JSON.stringify(gg));
-    } catch (e) {
-      console.log('error in storing store details');
-    }
-  };
+  
   useEffect(() => {
-    getData();
-    console.log(products);
-  }, []);
-
-  useEffect(() => {
-    setProducts(products.products);
+    setCurrent(products.products);
   }, [products]);
 
   const barcodeReceived = e => {
@@ -94,8 +64,8 @@ const Products: React.FC<RouteStackParamList<'Products'>> = ({
         return obj.SSN == e.data;
       });
       if (found) {
-        cart.push(found);
-        Alert.alert('Match Found ' + found.name);
+        addCart(found)
+        Alert.alert(found.name + 'Added to Cart');
       } else {
         Alert.alert('NO PRODUCT FOUND ');
       }
@@ -107,6 +77,7 @@ const Products: React.FC<RouteStackParamList<'Products'>> = ({
   };
 
   if (current && current?.length > 0) {
+   
     return (
       <SafeAreaView style={styles.mainCon}>
         {scans ? (
@@ -137,6 +108,7 @@ const Products: React.FC<RouteStackParamList<'Products'>> = ({
           </TouchableOpacity>
         </View>
         <DropdownMenu
+          useNativeDriver={true}
           style={{flex: 1, marginLeft: 10}}
           bgColor={'white'}
           tintColor={'#666666'}
@@ -162,14 +134,14 @@ const Products: React.FC<RouteStackParamList<'Products'>> = ({
               {current.map(item =>
                 cat == item.category ? (
                   
-                    <CropCard item={item} onPress={cart.push(item)}/>
+                    <CropCard item={item} onPress={() => addCart(item)}/>
                  
                 ) : null,
               )}
             </View>
           </ScrollView>
         </DropdownMenu>
-        <TouchableOpacity onPress={() => [addCart(cart),navigation.navigate("Payment",{sid:sid}),console.log(cart)]}>
+        <TouchableOpacity onPress={ () => cart.length ? [navigation.navigate("Payment",{sid:sid,cart:cart}),setCart([])] : Alert.alert("Cart Is Empty")}>
           <View style={styles.button}>
             <Text style={{fontSize: RFValue(20), fontFamily: Bold}}>
               Payment ->
@@ -226,3 +198,4 @@ const styles = StyleSheet.create({
   },
   
 });
+

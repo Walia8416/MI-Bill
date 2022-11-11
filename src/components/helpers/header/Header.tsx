@@ -25,6 +25,9 @@ const Header = ({navigation, onPress, scroll, testID, title, creds}) => {
   const clearAllData = async () => {
     try {
       await AsyncStorage.clear();
+      const keys = await AsyncStorage.getAllKeys();
+      const result = await AsyncStorage.multiGet(keys);
+      console.log(result);
       console.log('Done');
     } catch (error) {
       console.log(error);

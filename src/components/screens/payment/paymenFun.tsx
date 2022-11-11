@@ -12,15 +12,14 @@ import {
   Button,
   Alert,
 } from 'react-native';
-
+import NetInfo from "@react-native-community/netinfo";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Colors} from '../../../constants/colors';
 import PDFView from 'react-native-view-pdf/lib/index';
-import Header from '../../helpers/header/Header';
+import { RadioButton } from 'react-native-paper';
 import React, {useEffect, useRef, useState} from 'react';
 import {useStripe} from '@stripe/stripe-react-native';
-import {TextInput} from 'react-native-gesture-handler';
-import InputFeild from '../../helpers/inputfields/InputField';
+
 import {RFValue} from 'react-native-responsive-fontsize';
 import {Bold} from '../../../constants/Fonts';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -31,35 +30,48 @@ import CartCard from './cartCard';
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
 import {heighttodp, widthtodp} from '../../../constants/Dimenstions';
 import { Screen_Width } from '../../../constants/constants';
-import BackButton from '../../helpers/buttons/BackButton';
-import { order } from '../../../store/actions/order';
-import OpenPdf from 'react-native-open-pdf';
+
+
 import CustomAlert from '../../helpers/CustomAlert';
+import { useAppDispatch } from '../../../store/store';
+import { getorders } from '../../../store/actions/getOrders';
 
 
 
 
 
-const PaymentFun = ({navigation,sid}) => {
+const PaymentFun = ({navigation,sid,cart}) => {
+
+ 
+
+
+  
+  
   useEffect(() => {
     getCart();
-    
-    console.log(gg);
+    const removeNetInfoSubscription = NetInfo.addEventListener((state) => {
+      const offline = !(state.isConnected && state.isInternetReachable);
+      setOfflineStatus(offline);
+      console.log(state)
+    });
+   
   }, []);
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
   const stripe = useStripe();
+  const [value, setValue] = React.useState('first');
   const [cname, setCname] = useState('');
   const [phone, setPhone] = useState('');
   const [caddr, setCaddr] = useState('');
   const [email, setEmail] = useState('');
+  const [isOffline, setOfflineStatus] = useState(false);
   const [OPD, setOPD] = useState('');
   const [gg, setGG] = useState([]);
   const [ind, setInd] = useState('');
   const [show, setShow] = useState(false);
   const [fileAlert, setFileAlert] = useState(false);
-  
-
+  const dispatch = useAppDispatch();
+  console.log(isOffline);
 
   
   const viewPD = () => {
@@ -118,10 +130,11 @@ const PaymentFun = ({navigation,sid}) => {
   
   const getCart = async () => {
     try {
-      const resp = await AsyncStorage.getItem('Cart');
+      
       const opID = await AsyncStorage.getItem('Users');
       setOPD(opID);
-      setGG(JSON.parse(resp));
+      console.log(cart)
+      setGG(cart);
       setInd(String(Date.now()));
       
     } catch (e) {
@@ -157,6 +170,7 @@ const PaymentFun = ({navigation,sid}) => {
     } 
   };
 
+  
 
   const createOrder = async () => {
     try {
@@ -183,105 +197,129 @@ const PaymentFun = ({navigation,sid}) => {
   };
 
 
-
+ 
   const payMe = async (tots) => {
-    try {
-      const response = await fetch('http://3.108.203.2:8000/api/payment/', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({price: tots}),
-      });
-      const data = await response.json();
-      console.log(data);
-      if (!response.ok) return Alert.alert(data.message);
-      const clientSecret = data.clientSecret;
-      const initSheet = await stripe.initPaymentSheet({
-        paymentIntentClientSecret: clientSecret,
-        merchantDisplayName: 'MI',
-      });
-
-      if (initSheet.error) return console.log(initSheet.error.message);
-      const presentSheet = await stripe.presentPaymentSheet();
-      if (presentSheet.error) return console.log(presentSheet.error.message);
-      createOrder();
-      setShow(true);
-      createPDF(ind);
-      
-    } catch (e) {
-      console.error('errors');
+    if(cname == ""||email==""||caddr==""||phone=="") {
+      Alert.alert("Please fill out all fields!")
+    }else {
+      if(value == "first"){
+        try {
+          const response = await fetch('http://3.108.203.2:8000/api/payment/', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({price: tots}),
+          });
+          const data = await response.json();
+          console.log(data);
+          if (!response.ok) return Alert.alert(data.message);
+          const clientSecret = data.clientSecret;
+          const initSheet = await stripe.initPaymentSheet({
+            paymentIntentClientSecret: clientSecret,
+            merchantDisplayName: 'MI',
+        });
+  
+          if (initSheet.error) return console.log(initSheet.error.message);
+          const presentSheet = await stripe.presentPaymentSheet();
+          if (presentSheet.error) return console.log(presentSheet.error.message);
+          createOrder();
+          setShow(true);
+          createPDF(ind);
+          navigation.navigate("Home");
+          dispatch(getorders(OPD))
+          
+        } catch (e) {
+          console.error('errors');
+        }
+      }else {
+        createOrder();
+        setShow(true);
+        createPDF(ind);
+        navigation.navigate("Home");
+        dispatch(getorders(OPD));
+      }
     }
+    
   };
   const total = gg.reduce((a,v) =>  a = a + parseInt(v.price) , 0 );
   console.log(name);
   return (
     <View style={styles.mainCon}>
-      <CustomAlert visible={show} handleClose={() => setShow(false)} title={"Order Placed"} message={`Invoice has been sent to ${email}. Thanks for shopping with Xiaomi`}/>
-      <CustomAlert visible={fileAlert} handleClose={() => setFileAlert(false)} title={"Invoice Downloaded"} message={`Invoice has been saved`}/>
-      <Text style={styles.high}>Customer Details</Text>
-      <View style={styles.innerCon}>
-        <Fumi
-          passiveIconColor={'white'}
-          style={styles.inp}
-          label={'Customer Name'}
-          iconClass={FontAwesomeIcon}
-          iconName={'university'}
-          iconColor={'white'}
-          iconSize={20}
-          inputPadding={16}
-          inputStyle={{color:"black"}}
-          onChangeText={(text) => setCname(text)}  
+      <ScrollView>
+        <CustomAlert visible={show} handleClose={() => setShow(false)} title={"Order Placed"} message={`Invoice has been sent to ${email}. Thanks for shopping with Xiaomi`}/>
+        <CustomAlert visible={fileAlert} handleClose={() => setFileAlert(false)} title={"Invoice Downloaded"} message={`Invoice has been saved`}/>
+        <Text style={styles.high}>Customer Details</Text>
+      
+        <View style={styles.innerCon}>
+          <Fumi
+            passiveIconColor={'white'}
+            style={styles.inp}
+            label={'Customer Name'}
+            iconClass={FontAwesomeIcon}
+            iconName={'university'}
+            iconColor={'white'}
+            iconSize={20}
+            inputPadding={16}
+            inputStyle={{color:"black"}}
+            onChangeText={(text) => setCname(text)}  
 
-        />
-        <Fumi
-          passiveIconColor={'white'}
-          style={styles.inp}
-          label={'Phone Number'}
-          iconClass={FontAwesomeIcon}
-          iconName={'university'}
-          iconColor={'white'}
-          iconSize={20}
-          inputPadding={16}
-          inputStyle={{color:"black"}}
-          onChangeText={(text) => setPhone(text)}  
-        />
-        <Fumi
-          passiveIconColor={'white'}
-          style={styles.inp}
-          label={'Address'}
-          iconClass={FontAwesomeIcon}
-          iconName={'university'}
-          iconColor={'white'}
-          iconSize={20}
-          inputStyle={{color:"black"}}
-          inputPadding={16}
-          onChangeText={(text) => setCaddr(text)}  
-        />
-        <Fumi
-          passiveIconColor={'white'}
-          style={styles.inp}
-          label={'Email'}
-          iconClass={FontAwesomeIcon}
-          iconName={'university'}
-          iconColor={'white'}
-          iconSize={20}
-          inputStyle={{color:"black"}}
-          inputPadding={16}
-          onChangeText={(text) => setEmail(text)}  
-        />
-      </View>
-      <Text style={styles.high}>Order Information</Text>
-      <ScrollView contentContainerStyle={styles.orderInfo}>
-        {gg.map(item => (
+          />
+          <Fumi
+            passiveIconColor={'white'}
+            style={styles.inp}
+            label={'Phone Number'}
+            iconClass={FontAwesomeIcon}
+            iconName={'university'}
+            iconColor={'white'}
+            iconSize={20}
+            inputPadding={16}
+            inputStyle={{color:"black"}}
+            onChangeText={(text) => setPhone(text)}  
+          />
+          <Fumi
+            passiveIconColor={'white'}
+            style={styles.inp}
+            label={'Address'}
+            iconClass={FontAwesomeIcon}
+            iconName={'university'}
+            iconColor={'white'}
+            iconSize={20}
+            inputStyle={{color:"black"}}
+            inputPadding={16}
+            onChangeText={(text) => setCaddr(text)}  
+          />
+          <Fumi
+            passiveIconColor={'white'}
+            style={styles.inp}
+            label={'Email'}
+            iconClass={FontAwesomeIcon}
+            iconName={'university'}
+            iconColor={'white'}
+            iconSize={20}
+            inputStyle={{color:"black"}}
+            inputPadding={16}
+            onChangeText={(text) => setEmail(text)}  
+          />
+        </View>
+        <Text style={styles.high}>Order Information</Text>
+        <ScrollView contentContainerStyle={styles.orderInfo}>
+          {gg.map(item => (
+            
+            <CartCard item={item} onPress={() => [removeCart(item),console.log("ds")]}/>
+          ))}
           
-          <CartCard item={item} onPress={() => [removeCart(item),console.log("ds")]}/>
-        ))}
+        </ScrollView>
         
+        <TouchableOpacity onPress={() =>payMe(total)}>
+        
+        <View style={styles.button}>
+          <Text style={styles.btext}>Pay ₹{total} -></Text>
+        </View>
+        </TouchableOpacity>
+        <RadioButton.Group onValueChange={value => setValue(value)} value={value}>
+          <RadioButton.Item label="Card" value="first" disabled={isOffline}/>
+          <RadioButton.Item label="Cash" value="second" />
+        </RadioButton.Group>
       </ScrollView>
-      <TouchableOpacity onPress={() =>payMe(total)}>
-      <View style={styles.button}>
-        <Text style={styles.btext}>Pay ₹{total} -></Text>
-      </View>
-      </TouchableOpacity>
       
     </View>
   );
@@ -315,6 +353,16 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
   },
   button:{
+    width:widthtodp(Screen_Width - 50),
+    height:heighttodp(50),
+    padding:20,
+    backgroundColor:"#ffd86f",
+    justifyContent:'center',
+    alignItems:'center',
+    borderRadius:10,
+    marginTop:10,
+  },
+  cbutton:{
     width:widthtodp(Screen_Width - 50),
     height:heighttodp(50),
     padding:20,

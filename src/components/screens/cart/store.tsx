@@ -30,46 +30,8 @@ const Store: React.FC<RouteStackParamList<'Store'>> = ({
   const [current, setCurrent] = useState([]);
   const dispatch = useDispatch();
 
-  const getData = async () => {
-    try {
-      const dataToken = await AsyncStorage.getItem('Tokens');
-      const opID = await AsyncStorage.getItem('Users');
-      if (dataToken !== null) {
-        dispatch(getorders(opID));
-        getStored();
-      } else {
-        console.log('NO ACTIVE token found');
-      }
-    } catch (e) {
-      console.log('errors');
-    }
-  };
-  const getStored = async () => {
-    try {
-      const x = await AsyncStorage.getItem('PrevOrders');
-      if (x) {
-        setCurrent(JSON.parse(x));
-      }
-
-      return x;
-    } catch (e) {
-      console.log('error in storing store details');
-    }
-  };
-
-  const setStores = async gg => {
-    try {
-      await AsyncStorage.setItem('PrevOrders', JSON.stringify(gg));
-    } catch (e) {
-      console.log('error in storing store details');
-    }
-  };
   useEffect(() => {
-    getData();
-  }, []);
-
-  useEffect(() => {
-    setStores(orders.orders);
+    setCurrent(orders.orders);
   }, [orders]);
 
   if (current && current?.length > 0) {

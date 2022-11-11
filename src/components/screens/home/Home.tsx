@@ -26,6 +26,7 @@ import {Bold, RobMono} from '../../../constants/Fonts';
 import {store, useAppDispatch, useAppSelector} from '../../../store/store';
 import {useDispatch} from 'react-redux';
 import Loading from './helper/Loading';
+import {getProducts} from '../../../store/actions/products';
 
 const {height} = Dimensions.get('window');
 
@@ -36,53 +37,9 @@ const Home: React.FC<RouteStackParamList<'Home'>> = ({
   const [shadow, setShadow] = React.useState(false);
   const {stores} = useAppSelector(state => state.stores);
   const [current, setCurrent] = useState([]);
-  const dispatch = useDispatch();
-
-  const getData = async () => {
-    try {
-      const dataToken = await AsyncStorage.getItem('Tokens');
-      const opID = await AsyncStorage.getItem('Users');
-      const storeDets = await AsyncStorage.getItem('Stores');
-
-      if (dataToken !== null) {
-        console.log(dataToken);
-        console.log(opID);
-        dispatch(getStores(opID));
-        getStored();
-      } else {
-        console.log('NO ACTIVE token found');
-      }
-    } catch (e) {
-      console.log('errors');
-    }
-  };
-
-  const getStored = async () => {
-    try {
-      const x = await AsyncStorage.getItem('Stores');
-      if (x) {
-        setCurrent(JSON.parse(x));
-      }
-
-      return x;
-    } catch (e) {
-      console.log('error in storing store details');
-    }
-  };
-
-  const setStores = async gg => {
-    try {
-      await AsyncStorage.setItem('Stores', JSON.stringify(gg));
-    } catch (e) {
-      console.log('error in storing store details');
-    }
-  };
+  const dispatch = useAppDispatch();
   useEffect(() => {
-    getData();
-  }, []);
-
-  useEffect(() => {
-    setStores(stores.stores);
+    setCurrent(stores.stores);
   }, [stores]);
 
   if (current && current?.length > 0) {
@@ -101,7 +58,12 @@ const Home: React.FC<RouteStackParamList<'Home'>> = ({
           <ScrollView>
             {current.map(item => (
               <TouchableOpacity
-                onPress={() => navigation.navigate('Products', {sid: item})}>
+                onPress={() => [
+                  dispatch(
+                    getProducts(item._id),
+                    navigation.navigate('Products', {sid: item}),
+                  ),
+                ]}>
                 <ProductCard item={item} />
               </TouchableOpacity>
             ))}

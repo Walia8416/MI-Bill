@@ -13,14 +13,20 @@ import {
   SemiBoldItalic,
 } from '../../../constants/Fonts';
 import {Colors} from '../../../constants/colors';
+import {useAppSelector} from '../../../store/store';
+import {useDispatch} from 'react-redux';
+import {getStores} from '../../../store/actions/stores';
+import {getorders} from '../../../store/actions/getOrders';
 
 const SplashScreen: React.FC<RouteStackParamList<'SplashScreen'>> = ({
   navigation,
   route,
 }: RouteStackParamList<'SplashScreen'>) => {
+  const dispatch = useDispatch();
   React.useEffect(() => {
     setTimeout(() => {
       importData();
+
       getData();
     }, 50);
   });
@@ -39,6 +45,7 @@ const SplashScreen: React.FC<RouteStackParamList<'SplashScreen'>> = ({
   const getData = async () => {
     try {
       const dataToken = await AsyncStorage.getItem('Tokens');
+
       if (dataToken !== null) {
         navigation.navigate('Home');
       } else {
